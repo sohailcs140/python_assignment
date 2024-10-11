@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+env/
+venv/
+ENV/
+.egg-info/
+dist/
+build/
+
+# FastAPI specific
+*.sqlite3  # If you're using SQLite
+instance/
+*.db
+
+# Alembic
+alembic/version.py
+migrations/
+
+# IDE and Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Test files
+.coverage
+*.log

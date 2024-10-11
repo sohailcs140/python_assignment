@@ -1,0 +1,7 @@
+Establish relationships between the models in FastAPI.
+start new assignment
+    Set up the environment for the FastAPI project.
+    Created a function to hash passwords
+    Developed a function to verify passwords.
+    Implemented a function to create tokens for users.
+    Added functionality to verify tokens.
