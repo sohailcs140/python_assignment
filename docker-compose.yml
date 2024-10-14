@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: db_container
+    restart: always
+    environment:
+      POSTGRES_DB: db_assignment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - fastapi_network
+
+  web:
+      build: .
+      volumes:
+        - .:/app
+      ports:
+        - "8000:8000"
+      depends_on:
+        - db
+      environment:
+        - DATABASE_URL=postgresql://postgres:root@localhost/db_assignment
+
+      command: >
+        sh -c "alembic upgrade head && cd app && fastapi run main.py"
+
+      networks:
+        - fastapi_network
+
+  redis:
+    image: redis
+    container_name: fastapi_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+    networks:
+      - fastapi_network
+
+
+  celery:
+    build: .
+    container_name: fastapi_celery
+    command: celery -A config worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+
+    networks:
+      - fastapi_network
+
+  flower:
+    build: .
+    container_name: fastapi_flower
+    command: celery -A config flower
+    ports:
+      - "5555:5555"
+    depends_on:
+      - celery
+
+    networks:
+      - fastapi_network
+
+volumes:
+  pgdata:
+
+networks:
+  fastapi_network:
+    driver: bridge

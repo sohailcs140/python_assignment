@@ -17,9 +17,6 @@ build/
 instance/
 *.db
 
-# Alembic
-alembic/version.py
-migrations/
 
 # IDE and Editor specific
 .vscode/
@@ -34,5 +31,7 @@ Thumbs.db
 # Test files
 .coverage
 *.log
+test.db
+.prgress
 
-.env
+

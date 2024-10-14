@@ -15,6 +15,17 @@ typing-extensions = ">=4"
 tz = ["backports.zoneinfo"]
 
 [[package]]
+name = "amqp"
+version = "5.2.0"
+description = "Low-level AMQP client for Python (fork of amqplib)."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+vine = ">=5.0.0,<6.0.0"
+
+[[package]]
 name = "annotated-types"
 version = "0.7.0"
 description = "Reusable constraint types to use with typing.Annotated"
@@ -42,6 +53,14 @@ test = ["anyio", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis
 trio = ["trio (>=0.26.1)"]
 
 [[package]]
+name = "async-timeout"
+version = "4.0.3"
+description = "Timeout context manager for asyncio programs"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "bcrypt"
 version = "4.2.0"
 description = "Modern password hashing for your software and your servers"
@@ -52,6 +71,67 @@ python-versions = ">=3.7"
 [package.extras]
 tests = ["pytest (>=3.2.1,!=3.3.0)"]
 typecheck = ["mypy"]
+
+[[package]]
+name = "billiard"
+version = "4.2.1"
+description = "Python multiprocessing fork with improvements and bugfixes"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "celery"
+version = "5.4.0"
+description = "Distributed Task Queue."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+billiard = ">=4.2.0,<5.0"
+click = ">=8.1.2,<9.0"
+click-didyoumean = ">=0.3.0"
+click-plugins = ">=1.1.1"
+click-repl = ">=0.2.0"
+kombu = ">=5.3.4,<6.0"
+python-dateutil = ">=2.8.2"
+tzdata = ">=2022.7"
+vine = ">=5.1.0,<6.0"
+
+[package.extras]
+arangodb = ["pyArango (>=2.0.2)"]
+auth = ["cryptography (==42.0.5)"]
+azureblockblob = ["azure-storage-blob (>=12.15.0)"]
+brotli = ["brotli (>=1.0.0)", "brotlipy (>=0.7.0)"]
+cassandra = ["cassandra-driver (>=3.25.0,<4)"]
+consul = ["python-consul2 (==0.1.5)"]
+cosmosdbsql = ["pydocumentdb (==2.3.5)"]
+couchbase = ["couchbase (>=3.0.0)"]
+couchdb = ["pycouchdb (==1.14.2)"]
+django = ["Django (>=2.2.28)"]
+dynamodb = ["boto3 (>=1.26.143)"]
+elasticsearch = ["elasticsearch (<=8.13.0)", "elastic-transport (<=8.13.0)"]
+eventlet = ["eventlet (>=0.32.0)"]
+gcs = ["google-cloud-storage (>=2.10.0)"]
+gevent = ["gevent (>=1.5.0)"]
+librabbitmq = ["librabbitmq (>=2.0.0)"]
+memcache = ["pylibmc (==1.6.3)"]
+mongodb = ["pymongo[srv] (>=4.0.2)"]
+msgpack = ["msgpack (==1.0.8)"]
+pymemcache = ["python-memcached (>=1.61)"]
+pyro = ["pyro4 (==4.82)"]
+pytest = ["pytest-celery[all] (>=1.0.0)"]
+redis = ["redis (>=4.5.2,!=4.5.5,<6.0.0)"]
+s3 = ["boto3 (>=1.26.143)"]
+slmq = ["softlayer-messaging (>=1.0.3)"]
+solar = ["ephem (==4.1.5)"]
+sqlalchemy = ["sqlalchemy (>=1.4.48,<2.1)"]
+sqs = ["boto3 (>=1.26.143)", "urllib3 (>=1.26.16)", "kombu[sqs] (>=5.3.4)", "pycurl (>=7.43.0.5)"]
+tblib = ["tblib (>=1.3.0)", "tblib (>=1.5.0)"]
+yaml = ["PyYAML (>=3.10)"]
+zookeeper = ["kazoo (>=1.3.1)"]
+zstd = ["zstandard (==0.22.0)"]
 
 [[package]]
 name = "certifi"
@@ -71,6 +151,46 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[[package]]
+name = "click-didyoumean"
+version = "0.3.1"
+description = "Enables git-like *did-you-mean* feature in click"
+category = "main"
+optional = false
+python-versions = ">=3.6.2"
+
+[package.dependencies]
+click = ">=7"
+
+[[package]]
+name = "click-plugins"
+version = "1.1.1"
+description = "An extension module for click to enable registering CLI commands via setuptools entry-points."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = ">=4.0"
+
+[package.extras]
+dev = ["pytest (>=3.6)", "pytest-cov", "wheel", "coveralls"]
+
+[[package]]
+name = "click-repl"
+version = "0.3.0"
+description = "REPL plugin for Click"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+click = ">=7.0"
+prompt-toolkit = ">=3.0.36"
+
+[package.extras]
+testing = ["pytest-cov (>=4.0.0)", "pytest (>=7.2.1)", "tox (>=4.4.3)"]
 
 [[package]]
 name = "colorama"
@@ -205,6 +325,21 @@ scylla-driver = ["scylla-driver (>=3.25.6,<4.0.0)"]
 bunnet = ["bunnet (>=1.1.0,<2.0.0)"]
 
 [[package]]
+name = "flower"
+version = "2.0.1"
+description = "Celery Flower"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+celery = ">=5.0.5"
+humanize = "*"
+prometheus-client = ">=0.8.0"
+pytz = "*"
+tornado = ">=5.0.0,<7.0.0"
+
+[[package]]
 name = "greenlet"
 version = "3.1.1"
 description = "Lightweight in-process concurrent programming"
@@ -276,6 +411,17 @@ socks = ["socksio (>=1.0.0,<2.0.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
+name = "humanize"
+version = "4.11.0"
+description = "Python humanize utilities"
+category = "main"
+optional = false
+python-versions = ">=3.9"
+
+[package.extras]
+tests = ["freezegun", "pytest", "pytest-cov"]
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -285,6 +431,14 @@ python-versions = ">=3.6"
 
 [package.extras]
 all = ["ruff (>=0.6.2)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "flake8 (>=7.1.1)"]
+
+[[package]]
+name = "iniconfig"
+version = "2.0.0"
+description = "brain-dead simple config-ini parsing"
+category = "main"
+optional = false
+python-versions = ">=3.7"
 
 [[package]]
 name = "jinja2"
@@ -299,6 +453,36 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[[package]]
+name = "kombu"
+version = "5.4.2"
+description = "Messaging library for Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+amqp = ">=5.1.1,<6.0.0"
+tzdata = {version = "*", markers = "python_version >= \"3.9\""}
+vine = "5.1.0"
+
+[package.extras]
+azureservicebus = ["azure-servicebus (>=7.10.0)"]
+azurestoragequeues = ["azure-storage-queue (>=12.6.0)", "azure-identity (>=1.12.0)"]
+confluentkafka = ["confluent-kafka (>=2.2.0)"]
+consul = ["python-consul2 (==0.1.5)"]
+librabbitmq = ["librabbitmq (>=2.0.0)"]
+mongodb = ["pymongo (>=4.1.1)"]
+msgpack = ["msgpack (==1.1.0)"]
+pyro = ["pyro4 (==4.82)"]
+qpid = ["qpid-python (>=0.26)", "qpid-tools (>=0.26)"]
+redis = ["redis (>=4.5.2,!=4.5.5,!=5.0.2)"]
+slmq = ["softlayer-messaging (>=1.0.3)"]
+sqlalchemy = ["sqlalchemy (>=1.4.48,<2.1)"]
+sqs = ["boto3 (>=1.26.143)", "urllib3 (>=1.26.16)", "pycurl (>=7.43.0.5)"]
+yaml = ["PyYAML (>=3.10)"]
+zookeeper = ["kazoo (>=2.8.0)"]
 
 [[package]]
 name = "mako"
@@ -354,6 +538,14 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "packaging"
+version = "24.1"
+description = "Core utilities for Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "passlib"
 version = "1.7.4"
 description = "comprehensive password hashing framework supporting over 30 schemes"
@@ -369,6 +561,40 @@ argon2 = ["argon2-cffi (>=18.2.0)"]
 bcrypt = ["bcrypt (>=3.1.0)"]
 build_docs = ["sphinx (>=1.6)", "sphinxcontrib-fulltoc (>=1.2.0)", "cloud-sptheme (>=1.10.1)"]
 totp = ["cryptography"]
+
+[[package]]
+name = "pluggy"
+version = "1.5.0"
+description = "plugin and hook calling mechanisms for python"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+dev = ["pre-commit", "tox"]
+testing = ["pytest", "pytest-benchmark"]
+
+[[package]]
+name = "prometheus-client"
+version = "0.21.0"
+description = "Python client for the Prometheus monitoring system."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+twisted = ["twisted"]
+
+[[package]]
+name = "prompt-toolkit"
+version = "3.0.48"
+description = "Library for building powerful interactive command lines in Python"
+category = "main"
+optional = false
+python-versions = ">=3.7.0"
+
+[package.dependencies]
+wcwidth = "*"
 
 [[package]]
 name = "psycopg2-binary"
@@ -435,6 +661,36 @@ docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
 tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
+name = "pytest"
+version = "8.3.3"
+description = "pytest: simple powerful testing with Python"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
+exceptiongroup = {version = ">=1.0.0rc8", markers = "python_version < \"3.11\""}
+iniconfig = "*"
+packaging = "*"
+pluggy = ">=1.5,<2"
+tomli = {version = ">=1", markers = "python_version < \"3.11\""}
+
+[package.extras]
+dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
+
+[[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -454,12 +710,35 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "pytz"
+version = "2024.2"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyyaml"
 version = "6.0.2"
 description = "YAML parser and emitter for Python"
 category = "main"
 optional = false
 python-versions = ">=3.8"
+
+[[package]]
+name = "redis"
+version = "5.1.1"
+description = "Python client for Redis database and key-value store"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+async-timeout = {version = ">=4.0.3", markers = "python_full_version < \"3.11.3\""}
+
+[package.extras]
+hiredis = ["hiredis (>=3.0.0)"]
+ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"]
 
 [[package]]
 name = "rich"
@@ -484,6 +763,14 @@ description = "Tool to Detect Surrounding Shell"
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "sniffio"
@@ -545,6 +832,22 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
 [[package]]
+name = "tomli"
+version = "2.0.2"
+description = "A lil' TOML parser"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
+name = "tornado"
+version = "6.4.1"
+description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "typer"
 version = "0.12.5"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
@@ -565,6 +868,14 @@ description = "Backported and Experimental Type Hints for Python 3.8+"
 category = "main"
 optional = false
 python-versions = ">=3.8"
+
+[[package]]
+name = "tzdata"
+version = "2024.2"
+description = "Provider of IANA time zone data"
+category = "main"
+optional = false
+python-versions = ">=2"
 
 [[package]]
 name = "uvicorn"
@@ -602,6 +913,14 @@ docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sp
 test = ["flake8 (>=5.0,<6.0)", "psutil", "pycodestyle (>=2.9.0,<2.10.0)", "pyOpenSSL (>=23.0.0,<23.1.0)", "mypy (>=0.800)", "Cython (>=0.29.36,<0.30.0)", "aiohttp (>=3.8.1)", "aiohttp (==3.9.0b0)"]
 
 [[package]]
+name = "vine"
+version = "5.1.0"
+description = "Python promises."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "watchfiles"
 version = "0.24.0"
 description = "Simple, modern and high performance file watching and code reload in python."
@@ -611,6 +930,14 @@ python-versions = ">=3.8"
 
 [package.dependencies]
 anyio = ">=3.0.0"
+
+[[package]]
+name = "wcwidth"
+version = "0.2.13"
+description = "Measures the displayed width of unicode strings in a terminal"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "websockets"
@@ -623,15 +950,22 @@ python-versions = ">=3.8"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "752802fb647306fefbd646ce5fd033fea9cb90d4f4371cbcba9a39525cdc9579"
+content-hash = "81171a7326e095bbbecc7d42187859ef6465daf4bfda95f6a559b3c6f9e62bef"
 
 [metadata.files]
 alembic = []
+amqp = []
 annotated-types = []
 anyio = []
+async-timeout = []
 bcrypt = []
+billiard = []
+celery = []
 certifi = []
 click = []
+click-didyoumean = []
+click-plugins = []
+click-repl = []
 colorama = []
 dnspython = []
 email-validator = []
@@ -640,34 +974,52 @@ fastapi = []
 fastapi-cli = []
 fastapi-filter = []
 fastapi-pagination = []
+flower = []
 greenlet = []
 h11 = []
 httpcore = []
 httptools = []
 httpx = []
+humanize = []
 idna = []
+iniconfig = []
 jinja2 = []
+kombu = []
 mako = []
 markdown-it-py = []
 markupsafe = []
 mdurl = []
+packaging = []
 passlib = []
+pluggy = []
+prometheus-client = []
+prompt-toolkit = []
 psycopg2-binary = []
 pydantic = []
 pydantic-core = []
 pygments = []
 pyjwt = []
+pytest = []
+python-dateutil = []
 python-dotenv = []
 python-multipart = []
+pytz = []
 pyyaml = []
+redis = []
 rich = []
 shellingham = []
+six = []
 sniffio = []
 sqlalchemy = []
 starlette = []
+tomli = []
+tornado = []
 typer = []
 typing-extensions = []
+tzdata = []
 uvicorn = []
 uvloop = []
+vine = []
 watchfiles = []
+wcwidth = []
 websockets = []

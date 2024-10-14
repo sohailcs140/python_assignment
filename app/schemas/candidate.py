@@ -21,14 +21,40 @@ class CandidateSchema(BaseModel):
     phone: str
 
 
-
 class CandidateReadSchema(CandidateSchema):
+    id: str
     create_at: datetime
     update_at: datetime
     skills: List[SkillSchema]
-    experience:List[ExperienceSchema]
+    experience: List[ExperienceSchema]
 
     class Config:
-        from_attributes=True
+        from_attributes = True
 
 
+# Skill Schemas
+
+class SkillSchema(BaseModel):
+    name: str
+    candidate_id: str
+
+
+class SkillUpdateSchema(BaseModel):
+    name: str
+
+
+class SkillReadSchema(BaseModel):
+    name: str
+    id: int
+
+    class Config:
+        from_attributes = True
+
+
+class SkillReadSchemaWithCandidateId(BaseModel):
+    candidate_id: str
+    name: str
+    id: int
+
+    class Config:
+        from_attributes = True
