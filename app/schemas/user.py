@@ -11,9 +11,9 @@ class UserReadSchema(UserSchema):
 
 
 class Token(BaseModel):
-    access_token:str
-    token_type:str
+    access_token: str
+    token_type: str
 
 
 class TokenData(BaseModel):
-    email:str
+    email: str

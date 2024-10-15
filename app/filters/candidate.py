@@ -1,6 +1,8 @@
 from typing import Optional
-from app.models.candidate import Candidate
+
 from fastapi_filter.contrib.sqlalchemy import Filter
+
+from app.models.candidate import Candidate
 
 
 class CandidateFilter(Filter):

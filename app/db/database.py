@@ -1,10 +1,10 @@
 import os
+from datetime import datetime
 from uuid import uuid4
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, String, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
-from datetime import datetime, timezone
 
 load_dotenv()
 
@@ -21,7 +21,9 @@ class BaseModel(Base):
     __abstract__ = True
     id = Column(String, primary_key=True, default=lambda: str(uuid4()))
     create_at = Column(DateTime, default=lambda: datetime.now())
-    update_at = Column(DateTime, default=lambda: datetime.now(), onupdate=lambda: datetime.now())
+    update_at = Column(
+        DateTime, default=lambda: datetime.now(), onupdate=lambda: datetime.now()
+    )
 
 
 def get_db() -> Session:

@@ -11,5 +11,5 @@ class Candidate(BaseModel):
     email = Column(String, nullable=False, unique=True)
     phone = Column(String(15), nullable=False, unique=True)
 
-    skills = Relationship('Skill', back_populates='candidate', uselist=True)
-    experience = Relationship('Experience', back_populates='candidate', uselist=True)
+    skills = Relationship("Skill", back_populates="candidate", uselist=True)
+    experience = Relationship("Experience", back_populates="candidate", uselist=True)

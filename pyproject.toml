@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["sohailcs140 <sohailcs140@gmail.com>"]
 
+
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = {extras = ["standard"], version = "^0.115.0"}

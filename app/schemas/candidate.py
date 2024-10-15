@@ -34,6 +34,7 @@ class CandidateReadSchema(CandidateSchema):
 
 # Skill Schemas
 
+
 class SkillSchema(BaseModel):
     name: str
     candidate_id: str
