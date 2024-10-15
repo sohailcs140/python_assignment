@@ -6,7 +6,10 @@ import jwt
 from dotenv import load_dotenv
 from fastapi import HTTPException, status
 from fastapi.params import Depends
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import (
+    OAuth2PasswordBearer,
+    OAuth2PasswordRequestForm
+)
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
