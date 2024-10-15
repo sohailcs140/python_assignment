@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi_pagination import add_pagination
+
 from app.routes import user as user_routers, candidate
 from app.routes.skill import skill_router
-import app.celery.tasks
 
 app:FastAPI = FastAPI()
 add_pagination(app)
