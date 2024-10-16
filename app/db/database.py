@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, String, DateTime
-from sqlalchemy.orm import sessionmaker, declarative_base, Session
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 load_dotenv()
 
@@ -17,7 +17,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-class BaseModel(Base):
+class BaseModel(Base):  # type: ignore
     __abstract__ = True
     id = Column(String, primary_key=True, default=lambda: str(uuid4()))
     create_at = Column(DateTime, default=lambda: datetime.now())
@@ -26,6 +26,11 @@ class BaseModel(Base):
     )
 
 
-def get_db() -> Session:
-    with SessionLocal() as session:
-        yield session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    except Exception as e:
+        raise e
+    finally:
+        db.close()

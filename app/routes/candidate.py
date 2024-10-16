@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, status
-from fastapi_filter.base.filter import FilterDepends
 from fastapi_pagination import Params, Page
 from sqlalchemy.orm import Session
 
@@ -20,9 +19,10 @@ router = APIRouter(
     path="/", response_model=Page[CandidateReadSchema], status_code=status.HTTP_200_OK
 )
 def list_candidates(
-    db: Session = Depends(get_db), params: Params = Depends()
+    params: Params = Depends(), session: Session = Depends(get_db)
 ) -> Page[CandidateReadSchema]:
-    return candidate.list_candidates(db=db, params=params)
+
+    return candidate.list_candidates(db=session, params=params)
 
 
 @router.post(
@@ -52,9 +52,9 @@ def delete_candidate(candidate_id: str, db: Session = Depends(get_db)):
     status_code=status.HTTP_200_OK,
 )
 def filter_candidates(
+    params: Params,
+    candidate_filter: CandidateFilter,
     db: Session = Depends(get_db),
-    params: Params = Depends(),
-    candidate_filter=FilterDepends(CandidateFilter),
 ):
     return candidate.filter_candidates(
         db=db, params=params, candidate_filter=candidate_filter

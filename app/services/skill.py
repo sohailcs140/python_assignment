@@ -1,5 +1,3 @@
-from http.client import HTTPException
-
 from fastapi import Depends, HTTPException, status
 from fastapi_pagination import Params, Page
 from sqlalchemy.orm import Session
