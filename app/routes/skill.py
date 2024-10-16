@@ -19,7 +19,9 @@ skill_router = APIRouter(
 )
 
 
-@skill_router.post("/", status_code=status.HTTP_201_CREATED)
+@skill_router.post(
+    "/", response_model=SkillReadSchema, status_code=status.HTTP_201_CREATED
+)
 def create_skill(request_body: SkillSchema, db: Session = Depends(get_db)):
     return skill_service.create_skill(request_body=request_body, db=db)
 
@@ -44,7 +46,7 @@ def list_skills(
 
 @skill_router.put("/{skill_id}/update", status_code=status.HTTP_200_OK)
 def update_skill(
-    request_body: SkillUpdateSchema, skill_id: str, db: Session = Depends(get_db)
+    request_body: SkillUpdateSchema, skill_id: int, db: Session = Depends(get_db)
 ):
     return skill_service.update_skill(
         request_body=request_body, skill_id=skill_id, db=db

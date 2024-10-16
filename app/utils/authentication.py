@@ -6,10 +6,7 @@ import jwt
 from dotenv import load_dotenv
 from fastapi import HTTPException, status
 from fastapi.params import Depends
-from fastapi.security import (
-    OAuth2PasswordBearer,
-    OAuth2PasswordRequestForm
-)
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
@@ -125,9 +122,7 @@ def varify_password(password: str, hashed_password: str) -> bool:
     return pwd_context.verify(password, hashed_password)
 
 
-def authenticate_user(
-    email: str, password: str, db: Session = Depends(get_db)
-) -> User | bool:
+def authenticate_user(email: str, password: str, db: Session = Depends(get_db)) -> User:
     """
     Authenticate a user by verifying their email and password.
 
@@ -141,9 +136,18 @@ def authenticate_user(
     """
     user = db.query(User).filter(User.email == email).first()
     if not user:
-        return False
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     if not varify_password(password, user.password):
-        return False
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
 
     return user
 
@@ -203,12 +207,6 @@ def login_for_access_token(
     user = authenticate_user(
         email=form_data.username, password=form_data.password, db=db
     )
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
 
     access_token = create_access_token(user_data={"email": user.email})
     return Token(access_token=access_token, token_type="bearer")

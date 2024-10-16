@@ -1,3 +1,5 @@
+from typing import Dict
+
 from fastapi import HTTPException, status
 from fastapi_pagination import Params, Page
 from sqlalchemy.orm import Session
@@ -93,7 +95,6 @@ def list_candidates(db: Session, params: Params) -> Page[CandidateReadSchema]:
     Raises:
         HTTPException: If there is an issue with retrieving the candidates.
     """
-
     return get_paginated_list_of_candidates(db=db, params=params)
 
 
@@ -120,7 +121,7 @@ def filter_candidates(
     )
 
 
-def delete_candidate(candidate_id: str, db: Session) -> None:
+def delete_candidate(candidate_id: str, db: Session) -> Dict:
     """
     Delete a candidate from the database by their unique identifier.
 
@@ -142,7 +143,7 @@ def delete_candidate(candidate_id: str, db: Session) -> None:
             status_code=status.HTTP_404_NOT_FOUND, detail="candidate not found."
         )
 
-    candidate_delete(candidate=candidate)
+    candidate_delete(candidate=candidate, db=db)
 
     return {"message": "candidate deleted."}
 

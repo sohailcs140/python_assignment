@@ -4,7 +4,7 @@ from typing import List
 from pydantic import BaseModel, EmailStr
 
 
-class SkillSchema(BaseModel):
+class CandidateSkillSchema(BaseModel):
     name: str
 
 
@@ -25,7 +25,7 @@ class CandidateReadSchema(CandidateSchema):
     id: str
     create_at: datetime
     update_at: datetime
-    skills: List[SkillSchema]
+    skills: List[CandidateSkillSchema]
     experience: List[ExperienceSchema]
 
     class Config:

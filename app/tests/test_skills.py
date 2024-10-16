@@ -16,7 +16,7 @@ def test_create_skill(test_db):
     }
     # create candidate
     response = client.post("/candidates", json=payload, headers=headers)
-    candidate_id: str = response.json().get("id")
+    candidate_id = response.json().get("id")
 
     skill_payload = {"name": "skill name", "candidate_id": candidate_id}
 
@@ -39,7 +39,7 @@ def test_retrieve_skill(test_db):
     }
     # create candidate
     response = client.post("/candidates", json=payload, headers=headers)
-    candidate_id: str = response.json().get("id")
+    candidate_id = response.json().get("id")
 
     skill_payload = {"name": "skill name", "candidate_id": candidate_id}
 
@@ -48,7 +48,6 @@ def test_retrieve_skill(test_db):
 
     assert response.status_code == status.HTTP_201_CREATED
     skill_id = response.json().get("id")
-
     #     retrieve a skill
     response = client.get(f"/skills/{skill_id}", headers=headers)
 
@@ -68,7 +67,7 @@ def test_delete_skill(test_db):
     }
     # create candidate
     response = client.post("/candidates", json=payload, headers=headers)
-    candidate_id: str = response.json().get("id")
+    candidate_id = response.json().get("id")
 
     skill_payload = {"name": "skill name", "candidate_id": candidate_id}
 

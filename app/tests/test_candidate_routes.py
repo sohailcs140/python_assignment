@@ -87,7 +87,7 @@ def test_retrieve_candidate(test_db):
     }
     # create candidate
     response = client.post("/candidates", json=payload, headers=headers)
-    candidate_id: str = response.json().get("id")
+    candidate_id = response.json().get("id")
 
     response = client.get(f"/candidates/{candidate_id}", headers=headers)
 
@@ -112,7 +112,7 @@ def test_delete_candidate(test_db):
     }
     # create candidate
     response = client.post("/candidates", json=payload, headers=headers)
-    candidate_id: str = response.json().get("id")
+    candidate_id = response.json().get("id")
 
     response = client.delete(f"/candidates/{candidate_id}", headers=headers)
 
